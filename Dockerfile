@@ -18,6 +18,7 @@ RUN addgroup -g $GID ${USER} && adduser -G ${USER} -D -u ${UID} ${USER}
 RUN apk update && apk add --no-cache nextcloud-client
 
 ADD sync.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/sync.sh
 
 USER ${USERNAME}
 
