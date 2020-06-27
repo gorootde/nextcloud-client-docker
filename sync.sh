@@ -1,14 +1,24 @@
 #!/bin/ash
 
-if [ -d /data ]
+DATADIR=/data
+
+echo "Datadir: $DATADIR"
+echo "User: $NEXTCLOUD_USER"
+echo "Password: ${#NEXTCLOUD_PASSWORD}"
+echo "Url: $NEXTCLOUD_URL"
+
+if [ -d $DATADIR ]
 then
-    mkdir -p /data
+    echo "Creating $DATADIR"
+    mkdir -p $DATADIR
 fi
 
-chown -R $USER:$USER /data
+echo "Chown $DATADIR"
+chown -R $USER:$USER $DATADIR
 
+echo "Starting sync loop..."
 while true
 do
-    nextcloudcmd --non-interactive -u $NEXTCLOUD_USER -p $NEXTCLOUD_PASSWORD /data $NEXTCLOUD_URL
+    nextcloudcmd --non-interactive --user $NEXTCLOUD_USER --password $NEXTCLOUD_PASSWORD /data $NEXTCLOUD_URL
     sleep $SYNC_SLEEP
 done
