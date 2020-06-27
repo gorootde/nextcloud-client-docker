@@ -3,7 +3,7 @@
 DATADIR=/data
 
 echo "Datadir: $DATADIR"
-echo "User: $NEXTCLOUD_USER"
+echo "User: $NEXTCLOUD_USERNAME"
 echo "Password: ${#NEXTCLOUD_PASSWORD}"
 echo "Url: $NEXTCLOUD_URL"
 
@@ -19,6 +19,6 @@ chown -R $USER:$USER $DATADIR
 echo "Starting sync loop..."
 while true
 do
-    nextcloudcmd --non-interactive --user $NEXTCLOUD_USER --password $NEXTCLOUD_PASSWORD /data $NEXTCLOUD_URL
+    nextcloudcmd --non-interactive --user $NEXTCLOUD_USERNAME --password $NEXTCLOUD_PASSWORD /data $NEXTCLOUD_URL
     sleep $SYNC_SLEEP
 done
